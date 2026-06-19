@@ -360,9 +360,3 @@ python run_analysis.py sample.log
 MIT License — free for personal and commercial use.
 
 ---
-
-## 👤 Author
-
-**Negary** — [github.com/pranv777](https://github.com/pranv777)
-
-Built as a portfolio project demonstrating agentic AI design using LangGraph and Ollama.
