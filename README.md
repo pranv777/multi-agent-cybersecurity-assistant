@@ -1,4 +1,3 @@
-```markdown
 # 🛡️ Multi-Agent Cybersecurity Assistant
 
 An agentic AI system that autonomously analyses security logs, retrieves CVEs, assesses risk, and generates actionable mitigation recommendations — powered by **LangGraph**, **Ollama**, and **scikit-learn**. No backend. No API. Pure agent orchestration.
@@ -107,8 +106,8 @@ multi_agent_cybersecurity_assistant/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/multi_agent_cybersecurity_assistant.git
-cd multi_agent_cybersecurity_assistant
+git clone https://github.com/pranv777/multi-agent-cybersecurity-assistant.git
+cd multi-agent-cybersecurity-assistant
 ```
 
 ### 2. Create virtual environment with Python 3.11
@@ -367,4 +366,3 @@ MIT License — free for personal and commercial use.
 **Negary** — [github.com/pranv777](https://github.com/pranv777)
 
 Built as a portfolio project demonstrating agentic AI design using LangGraph and Ollama.
-```
