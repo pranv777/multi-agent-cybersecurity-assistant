@@ -1,3 +1,4 @@
+```markdown
 # 🛡️ Multi-Agent Cybersecurity Assistant
 
 An agentic AI system that autonomously analyses security logs, retrieves CVEs, assesses risk, and generates actionable mitigation recommendations — powered by **LangGraph**, **Ollama**, and **scikit-learn**. No backend. No API. Pure agent orchestration.
@@ -7,142 +8,83 @@ An agentic AI system that autonomously analyses security logs, retrieves CVEs, a
 ## 🤖 What Makes This Agentic AI
 
 Five specialized agents work autonomously through a **LangGraph StateGraph**:
+
+```
 Input Files (.log / .txt / .csv / .pdf)
-
-│
-
-▼
-
+          │
+          ▼
 ┌─────────────────────┐
-
 │   parse_input       │  Extracts events, IPs, software versions
-
 └─────────┬───────────┘
-
-│
-
-▼
-
+          │
+          ▼
 ┌─────────────────────┐
-
 │  Coordinator Agent  │  Manages workflow, retries, error handling
-
 └─────────┬───────────┘
-
-│
-
-▼
-
+          │
+          ▼
 ┌──────────────────────────────┐
-
 │  Threat Detection Agent      │  Phase 1: Regex rules
-
 │                              │  Phase 2: Isolation Forest (ML)
-
 │                              │  Phase 3: Ollama LLM
-
 └──────────┬───────────────────┘
-
-│
-
-▼
-
+           │
+           ▼
 ┌──────────────────────────────┐
-
 │  CVE Retrieval Agent         │  NVD API v2 + local fallback dataset
-
 └──────────┬───────────────────┘
-
-│
-
-▼
-
+           │
+           ▼
 ┌──────────────────────────────┐
-
 │  Risk Scoring Agent          │  0.4×threat + 0.4×CVSS + 0.2×confidence
-
 └──────────┬───────────────────┘
-
-│
-
-▼
-
+           │
+           ▼
 ┌──────────────────────────────┐
-
 │  Recommendation Agent        │  Rule-based + Ollama LLM enrichment
-
 └──────────┬───────────────────┘
-
-│
-
-▼
-
+           │
+           ▼
 ┌──────────────────────────────┐
-
 │  Report Generator            │  Console output + JSON saved to disk
-
 └──────────────────────────────┘
+```
 
 ---
 
 ## 🗂️ Project Structure
+
+```
 multi_agent_cybersecurity_assistant/
-
 ├── app/
-
 │   ├── agents/
-
 │   │   ├── coordinator_agent.py   # Workflow manager + retry logic
-
 │   │   ├── threat_detection.py    # Regex + Isolation Forest + LLM
-
 │   │   ├── cve_retrieval.py       # NVD API + fallback CVE dataset
-
 │   │   ├── risk_scoring.py        # Weighted risk formula
-
 │   │   └── recommendation.py      # Rule-based + LLM recommendations
-
 │   ├── graph/
-
 │   │   └── workflow.py            # LangGraph StateGraph definition
-
 │   ├── parsers/
-
 │   │   ├── log_parser.py          # Regex log event extraction
-
 │   │   ├── pdf_parser.py          # PyMuPDF text + software versions
-
 │   │   └── report_parser.py       # Multi-format normaliser
-
 │   ├── services/
-
 │   │   ├── llm_service.py         # Ollama integration
-
 │   │   └── nvd_service.py         # NVD API + local CVE dataset
-
 │   └── models/
-
 │       └── schemas.py             # Pydantic schemas
-
 ├── tests/
-
 │   ├── test_parsers.py
-
 │   ├── test_agents.py
-
 │   ├── test_workflow.py
-
 │   └── test_e2e.py
-
 ├── reports/                       # Generated JSON reports (auto-created)
-
 ├── run_analysis.py                # CLI entry point
-
 ├── requirements.txt
-
 ├── .env
-
 └── README.md
+```
 
 ---
 
@@ -234,85 +176,83 @@ python run_analysis.py
 ---
 
 ## 📊 Sample Output
-================================================================================
 
-🛡️  MULTI-AGENT CYBERSECURITY ASSISTANT
+```
+================================================================================
+  🛡️  MULTI-AGENT CYBERSECURITY ASSISTANT
+================================================================================
 Files to analyze: 1
+  • sample.log
 
-• sample.log
 ================================================================================
-
-🤖 INITIATING AGENTIC AI PIPELINE
+  🤖 INITIATING AGENTIC AI PIPELINE
+================================================================================
 Agents: Coordinator → Threat Detection → CVE Retrieval → Risk Scoring → Recommendations
+
+================================================================================
+  📊 SECURITY ANALYSIS REPORT
 ================================================================================
 
-📊 SECURITY ANALYSIS REPORT
 EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
 Analysis identified 4 threats and 3 CVEs. Overall risk level: Critical (80.2/100).
-
 Immediate remediation is required.
+
 RISK ASSESSMENT
+--------------------------------------------------------------------------------
 🔴 Risk Level: Critical
-
 Risk Score: 80.2 / 100.0
+
 DETECTED THREATS
+--------------------------------------------------------------------------------
 Total threats found: 4
+
 🟡 [MEDIUM] Brute Force (confidence: 95%)
-
-↳ 5 failed login attempts from IP 192.168.1.100
-
+   ↳ 5 failed login attempts from IP 192.168.1.100
 🔴 [CRITICAL] Malware Indicator (confidence: 80%)
-
-↳ Malware-related keywords detected in logs
-
+   ↳ Malware-related keywords detected in logs
 🟡 [MEDIUM] Port Scan (confidence: 70%)
-
-↳ Port scan indicators found: 1 event(s)
-
+   ↳ Port scan indicators found: 1 event(s)
 🟡 [MEDIUM] Statistical Anomaly (confidence: 70%)
+   ↳ Isolation Forest detected unusual log distribution
 
-↳ Isolation Forest detected unusual log distribution
 CVE / VULNERABILITY FINDINGS
+--------------------------------------------------------------------------------
 Total CVEs found: 3
+
 🔴 CVE-2021-44228 CVSS 10.0 [Critical]
-
-Software: Log4j 2.14.1
-
-Log4Shell — JNDI injection RCE in Apache Log4j 2.
-
+   Software: Log4j 2.14.1
+   Log4Shell — JNDI injection RCE in Apache Log4j 2.
 🔴 CVE-2021-41773 CVSS 9.8 [Critical]
+   Software: Apache 2.4.49
+   Path traversal and RCE in Apache HTTP Server 2.4.49.
 
-Software: Apache 2.4.49
-
-Path traversal and RCE in Apache HTTP Server 2.4.49.
 REMEDIATION RECOMMENDATIONS
+--------------------------------------------------------------------------------
 🚨 IMMEDIATE PRIORITY ACTIONS:
-
-PATCH NOW: CVE-2021-44228 in Log4j 2.14.1 (CVSS 10.0).
-IMMEDIATE: Escalate to security incident response team.
-PATCH NOW: CVE-2021-41773 in Apache 2.4.49 (CVSS 9.8).
+  1. PATCH NOW: CVE-2021-44228 in Log4j 2.14.1 (CVSS 10.0).
+  2. IMMEDIATE: Escalate to security incident response team.
+  3. PATCH NOW: CVE-2021-41773 in Apache 2.4.49 (CVSS 9.8).
 
 📋 RECOMMENDED MITIGATIONS:
-
-Enable account lockout policy after 5 failed attempts.
-Implement Multi-Factor Authentication (MFA) on all endpoints.
-Rate-limit login attempts per IP using fail2ban or equivalent.
-Deploy an Intrusion Detection System (IDS).
-Apply latest security patches.
+  1. Enable account lockout policy after 5 failed attempts.
+  2. Implement Multi-Factor Authentication (MFA) on all endpoints.
+  3. Rate-limit login attempts per IP using fail2ban or equivalent.
+  4. Deploy an Intrusion Detection System (IDS).
+  5. Apply latest security patches.
 
 AGENT EXECUTION SUMMARY
+--------------------------------------------------------------------------------
 Steps completed : 6
-
 Errors          : 0
-
 Threats found   : 4
-
 CVEs retrieved  : 3
-
 Risk score      : 80.2 (Critical)
-================================================================================
 
-✅ ANALYSIS COMPLETE
+================================================================================
+  ✅ ANALYSIS COMPLETE
+================================================================================
+```
 
 ---
 
@@ -334,11 +274,12 @@ pytest tests/test_e2e.py -v
 ---
 
 ## 🔢 Risk Scoring Formula
+
+```
 risk_score = (0.4 × threat_severity_score)
-
-+ (0.4 × cvss_average × 10)
-
-+ (0.2 × confidence_average × 100)
+           + (0.4 × cvss_average × 10)
+           + (0.2 × confidence_average × 100)
+```
 
 | Severity | Score |
 |---|---|
@@ -380,25 +321,19 @@ Generates specific mitigations per threat type (fail2ban for brute force, IDS fo
 ## 📝 Create a Sample Log File
 
 Paste this into Notepad and save as `sample.log`:
+
+```
 2024-01-15 08:23:01 sshd: Failed password for root from 192.168.1.100 port 22
-
 2024-01-15 08:23:02 sshd: Failed password for root from 192.168.1.100 port 22
-
 2024-01-15 08:23:03 sshd: Failed password for admin from 192.168.1.100 port 22
-
 2024-01-15 08:23:04 sshd: Failed password for test from 192.168.1.100 port 22
-
 2024-01-15 08:23:05 sshd: Failed password for user from 192.168.1.100 port 22
-
 2024-01-15 08:23:06 kernel: nmap scan detected from 10.10.10.1
-
 2024-01-15 08:23:07 app: malware payload detected in upload
-
 2024-01-15 08:23:08 apache: brute force attack from 10.0.0.5
-
 Server: Apache 2.4.49 on port 80
-
 Log4j 2.14.1 detected in classpath
+```
 
 Then run:
 
@@ -432,3 +367,4 @@ MIT License — free for personal and commercial use.
 **Negary** — [github.com/pranv777](https://github.com/pranv777)
 
 Built as a portfolio project demonstrating agentic AI design using LangGraph and Ollama.
+```
