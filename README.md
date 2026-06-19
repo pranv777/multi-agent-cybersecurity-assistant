@@ -1,10 +1,10 @@
-# 🛡️ Multi-Agent Cybersecurity Assistant
+#  Multi-Agent Cybersecurity Assistant
 
 An agentic AI system that autonomously analyses security logs, retrieves CVEs, assesses risk, and generates actionable mitigation recommendations — powered by **LangGraph**, **Ollama**, and **scikit-learn**. No backend. No API. Pure agent orchestration.
 
 ---
 
-## 🤖 What Makes This Agentic AI
+##  What Makes This Agentic AI
 
 Five specialized agents work autonomously through a **LangGraph StateGraph**:
 
@@ -51,43 +51,7 @@ Input Files (.log / .txt / .csv / .pdf)
 
 ---
 
-## 🗂️ Project Structure
-
-```
-multi_agent_cybersecurity_assistant/
-├── app/
-│   ├── agents/
-│   │   ├── coordinator_agent.py   # Workflow manager + retry logic
-│   │   ├── threat_detection.py    # Regex + Isolation Forest + LLM
-│   │   ├── cve_retrieval.py       # NVD API + fallback CVE dataset
-│   │   ├── risk_scoring.py        # Weighted risk formula
-│   │   └── recommendation.py      # Rule-based + LLM recommendations
-│   ├── graph/
-│   │   └── workflow.py            # LangGraph StateGraph definition
-│   ├── parsers/
-│   │   ├── log_parser.py          # Regex log event extraction
-│   │   ├── pdf_parser.py          # PyMuPDF text + software versions
-│   │   └── report_parser.py       # Multi-format normaliser
-│   ├── services/
-│   │   ├── llm_service.py         # Ollama integration
-│   │   └── nvd_service.py         # NVD API + local CVE dataset
-│   └── models/
-│       └── schemas.py             # Pydantic schemas
-├── tests/
-│   ├── test_parsers.py
-│   ├── test_agents.py
-│   ├── test_workflow.py
-│   └── test_e2e.py
-├── reports/                       # Generated JSON reports (auto-created)
-├── run_analysis.py                # CLI entry point
-├── requirements.txt
-├── .env
-└── README.md
-```
-
----
-
-## ⚙️ Tech Stack
+##  Tech Stack
 
 | Component | Technology |
 |---|---|
@@ -101,7 +65,7 @@ multi_agent_cybersecurity_assistant/
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 ### 1. Clone the repository
 
@@ -150,7 +114,7 @@ OLLAMA_BASE_URL=http://localhost:11434
 
 ---
 
-## 🖥️ Usage
+##  Usage
 
 ```bash
 # Single file
@@ -174,7 +138,7 @@ python run_analysis.py
 
 ---
 
-## 📊 Sample Output
+##  Sample Output
 
 ```
 ================================================================================
@@ -255,7 +219,7 @@ Risk score      : 80.2 (Critical)
 
 ---
 
-## 🧪 Running Tests
+##  Running Tests
 
 ```bash
 # All tests
@@ -296,7 +260,7 @@ risk_score = (0.4 × threat_severity_score)
 
 ---
 
-## 🤖 Agent Details
+##  Agent Details
 
 ### Coordinator Agent
 Manages the LangGraph workflow. Validates state, handles errors, retries failed agents, and generates an execution summary after all agents complete.
@@ -317,7 +281,7 @@ Generates specific mitigations per threat type (fail2ban for brute force, IDS fo
 
 ---
 
-## 📝 Create a Sample Log File
+##  Create a Sample Log File
 
 Paste this into Notepad and save as `sample.log`:
 
@@ -342,7 +306,7 @@ python run_analysis.py sample.log
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 - [ ] MITRE ATT&CK framework mapping
 - [ ] Real-time log streaming support
@@ -355,7 +319,7 @@ python run_analysis.py sample.log
 
 ---
 
-## 📄 License
+##  License
 
 MIT License — free for personal and commercial use.
 
